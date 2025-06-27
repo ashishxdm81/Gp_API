@@ -10,7 +10,7 @@ from typing import Optional, Dict, List
 logging.basicConfig(level=logging.ERROR)
 logger = logging.getLogger(__name__)
 
-app = FastAPI()  # Removed invalid lifespan parameter
+app = FastAPI()
 
 # Shared HTTP client for connection pooling
 client = httpx.AsyncClient(
@@ -102,7 +102,7 @@ async def get_google_photos_links(url: str) -> Optional[Dict]:
 async def extract_links(URL: str):
     """
     Endpoint to extract Google Photos links.
-    Accepts both photos.google.com and photos.app.goo.gl URLs.
+    Accepts unanimated photos.google.com and photos.app.goo.gl URLs.
     """
     if not URL or ("photos.app.goo.gl" not in URL and "photos.google.com" not in URL):
         raise HTTPException(status_code=400, detail="Invalid or missing Google Photos URL")
